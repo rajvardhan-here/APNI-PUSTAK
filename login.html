@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | apni pustak</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f0f4f5;
+    }
+
+    header {
+      background-color: #4a90e2;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    .login-container {
+      max-width: 400px;
+      margin: 100px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-container h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      display: block;
+      color: #555;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .login-container button {
+      width: 100%;
+      background-color: #4a90e2;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .login-container button:hover {
+      background-color: #3b7ec4;
+    }
+
+    .signup-link {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .signup-link a {
+      text-decoration: none;
+      color: #4a90e2;
+      font-weight: bold;
+    }
+
+    .logout-btn {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .logout-btn:hover {
+      background-color: #e63946;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with Navigation Links -->
+  <header>
+    <h1>Welcome to apni pustak</h1>
+    <div class="nav-links" id="nav-links">
+     <a href="home.html">Home</a>
+      <a href="about.html">about us</a>
+      <a href="help.html">Help</a>
+      <a href="cart.html">Cart</a>
+      <a href="login.html">Login</a>
+    </div>
+  </header>
+
+  <!-- Login/Sign Up Section -->
+  <div class="login-container">
+    <h2>Login</h2>
+    <div class="input-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" placeholder="Enter your name">
+    </div>
+    <div class="input-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password">
+    </div>
+    <button onclick="login()"><a href="home.html"> Login</a></button>
+
+    <div class="signup-link">
+      <p>Don't have an account? <a href="#" onclick="showSignup()">Create Account</a></p>
+    </div>
+
+    <div id="signup-form" style="display:none;">
+      <h3>Create an Account</h3>
+      <div class="input-group">
+        <label for="new-name">Name</label>
+        <input type="text" id="new-name" placeholder="Enter your name">
+      </div>
+      <div class="input-group">
+        <label for="new-address">Address</label>
+        <input type="text" id="new-address" placeholder="Enter your address">
+      </div>
+      <div class="input-group">
+        <label for="new-phone">Phone Number</label>
+        <input type="text" id="new-phone" placeholder="Enter your phone number">
+      </div>
+      <div class="input-group">
+        <label for="new-password">Create Password</label>
+        <input type="password" id="new-password" placeholder="Create a password">
+      </div>
+      <button onclick="createAccount()">Create Account</button>
+    </div>
+
+    <button id="logout-btn" style="display:none;" onclick="logout()" class="logout-btn">Logout</button>
+  </div>
+
+  <script>
+    // Function to handle login
+    function login() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if (username && password) {
+        alert('Logged in successfully!');
+        // Hide login form and show logout button
+        document.getElementById('logout-btn').style.display = 'block';
+        document.querySelector('.login-container').style.display = 'none'; // Hide login form
+        // Redirect to home page
+        window.location.href = 'home.html'; // Redirect to home page
+        // Update the navigation links
+        document.getElementById('login-link').style.display = 'none'; // Hide login link
+      } else {
+        alert('Please enter both username and password');
+      }
+    }
+
+    // Function to show account creation form
+    function showSignup() {
+      document.querySelector('.login-container h2').textContent = 'Sign Up';
+      document.querySelector('.signup-link').style.display = 'none'; // Hide the "create account" link
+      document.getElementById('signup-form').style.display = 'block';
+    }
+
+    // Function to handle account creation
+    function createAccount() {
+      const newName = document.getElementById('new-name').value;
+      const newAddress = document.getElementById('new-address').value;
+      const newPhone = document.getElementById('new-phone').value;
+      const newPassword = document.getElementById('new-password').value;
+
+      if (newName && newAddress && newPhone && newPassword) {
+        alert('Account created successfully!');
+        document.getElementById('logout-btn').style.display = 'block';
+        document.querySelector('.login-container').style.display = 'none'; // Hide sign up form
+      } else {
+        alert('Please fill in all the fields');
+      }
+    }
+
+    // Function to logout
+    function logout() {
+      alert('You have logged out');
+      document.getElementById('logout-btn').style.display = 'none';
+      document.querySelector('.login-container').style.display = 'block'; // Show login form again
+      document.getElementById('login-link').style.display = 'block'; // Show login link again
+    }
+  </script>
+
+</body>
+</html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | apni pustak</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f0f4f5;
+    }
+
+    header {
+      background-color: #4a90e2;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    .login-container {
+      max-width: 400px;
+      margin: 100px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-container h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      display: block;
+      color: #555;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .login-container button {
+      width: 100%;
+      background-color: #4a90e2;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .login-container button:hover {
+      background-color: #3b7ec4;
+    }
+
+    .signup-link {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .signup-link a {
+      text-decoration: none;
+      color: #4a90e2;
+      font-weight: bold;
+    }
+
+    .logout-btn {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .logout-btn:hover {
+      background-color: #e63946;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with Navigation Links -->
+  <header>
+    <h1>Welcome to apni pustak</h1>
+    <div class="nav-links" id="nav-links">
+     <a href="home.html">Home</a>
+      <a href="about.html">about us</a>
+      <a href="help.html">Help</a>
+      <a href="cart.html">Cart</a>
+      <a href="login.html">Login</a>
+    </div>
+  </header>
+
+  <!-- Login/Sign Up Section -->
+  <div class="login-container">
+    <h2>Login</h2>
+    <div class="input-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" placeholder="Enter your name">
+    </div>
+    <div class="input-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password">
+    </div>
+    <button onclick="login()"><a href="home.html"> Login</a></button>
+
+    <div class="signup-link">
+      <p>Don't have an account? <a href="#" onclick="showSignup()">Create Account</a></p>
+    </div>
+
+    <div id="signup-form" style="display:none;">
+      <h3>Create an Account</h3>
+      <div class="input-group">
+        <label for="new-name">Name</label>
+        <input type="text" id="new-name" placeholder="Enter your name">
+      </div>
+      <div class="input-group">
+        <label for="new-address">Address</label>
+        <input type="text" id="new-address" placeholder="Enter your address">
+      </div>
+      <div class="input-group">
+        <label for="new-phone">Phone Number</label>
+        <input type="text" id="new-phone" placeholder="Enter your phone number">
+      </div>
+      <div class="input-group">
+        <label for="new-password">Create Password</label>
+        <input type="password" id="new-password" placeholder="Create a password">
+      </div>
+      <button onclick="createAccount()">Create Account</button>
+    </div>
+
+    <button id="logout-btn" style="display:none;" onclick="logout()" class="logout-btn">Logout</button>
+  </div>
+
+  <script>
+    // Function to handle login
+    function login() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if (username && password) {
+        alert('Logged in successfully!');
+        // Hide login form and show logout button
+        document.getElementById('logout-btn').style.display = 'block';
+        document.querySelector('.login-container').style.display = 'none'; // Hide login form
+        // Redirect to home page
+        window.location.href = 'home.html'; // Redirect to home page
+        // Update the navigation links
+        document.getElementById('login-link').style.display = 'none'; // Hide login link
+      } else {
+        alert('Please enter both username and password');
+      }
+    }
+
+    // Function to show account creation form
+    function showSignup() {
+      document.querySelector('.login-container h2').textContent = 'Sign Up';
+      document.querySelector('.signup-link').style.display = 'none'; // Hide the "create account" link
+      document.getElementById('signup-form').style.display = 'block';
+    }
+
+    // Function to handle account creation
+    function createAccount() {
+      const newName = document.getElementById('new-name').value;
+      const newAddress = document.getElementById('new-address').value;
+      const newPhone = document.getElementById('new-phone').value;
+      const newPassword = document.getElementById('new-password').value;
+
+      if (newName && newAddress && newPhone && newPassword) {
+        alert('Account created successfully!');
+        document.getElementById('logout-btn').style.display = 'block';
+        document.querySelector('.login-container').style.display = 'none'; // Hide sign up form
+      } else {
+        alert('Please fill in all the fields');
+      }
+    }
+
+    // Function to logout
+    function logout() {
+      alert('You have logged out');
+      document.getElementById('logout-btn').style.display = 'none';
+      document.querySelector('.login-container').style.display = 'block'; // Show login form again
+      document.getElementById('login-link').style.display = 'block'; // Show login link again
+    }
+  </script>
+
+</body>
+</html>
+>>>>>>> 51be3d7383b255e8d1941d26e6ee048c5a9c9972

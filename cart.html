@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Cart | apni pustak</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f0f4f5;
+    }
+
+    header {
+      background-color: #4a90e2;
+      color: white;
+      padding: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 20px;
+    }
+
+    header .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 25px;
+      font-weight: bold;
+    }
+
+    .cart-container {
+      max-width: 700px;
+      margin: 50px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .cart-container h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 15px 0;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .cart-item span {
+      font-size: 18px;
+      color: #333;
+    }
+
+    .remove-btn {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .total {
+      text-align: right;
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #4a90e2;
+    }
+
+    .payment-section {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .payment-section select,
+    .payment-section button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    footer {
+      background-color: #2f3637;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 60px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div><strong>📚 apni pustak</strong></div>
+    <div class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="help.html">Help</a>
+      <a href="cart.html">My Cart</a>
+      <a href="login.html">Login</a>
+    </div>
+  </header>
+
+  <div class="cart-container">
+    <h2>My Cart</h2>
+    <div id="cart-items"></div>
+    <div class="total" id="total-price">Total: ₹0</div>
+
+    <div class="payment-section">
+      <h3>Select Payment Method</h3>
+      <select id="payment-method">
+        <option value="credit-card">Credit Card</option>
+        <option value="upi">UPI</option>
+        <option value="cod">Cash on Delivery</option>
+      </select>
+      <button onclick="checkout()">Buy Now</button>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 apni pustak. All rights reserved.
+  </footer>
+
+  <script>
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartContainer = document.getElementById('cart-items');
+    const totalPriceElement = document.getElementById('total-price');
+    const paymentMethodSelect = document.getElementById('payment-method');
+
+    function renderCart() {
+      cartContainer.innerHTML = '';
+      let total = 0;
+
+      cartItems.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <span>${item.title}</span>
+          <span>₹${item.price}</span>
+          <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+        `;
+        cartContainer.appendChild(div);
+        total += item.price;
+      });
+
+      totalPriceElement.textContent = `Total: ₹${total}`;
+    }
+
+    function removeItem(index) {
+      cartItems.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+      renderCart();
+    }
+
+    function checkout() {
+      const paymentMethod = paymentMethodSelect.value;
+      alert(`Proceeding to checkout with ${paymentMethod} payment method.`);
+      // Here, you can add further logic to handle the checkout process.
+    }
+
+    renderCart();
+  </script>
+
+</body>
+</html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Cart | apni pustak</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f0f4f5;
+    }
+
+    header {
+      background-color: #4a90e2;
+      color: white;
+      padding: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 20px;
+    }
+
+    header .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 25px;
+      font-weight: bold;
+    }
+
+    .cart-container {
+      max-width: 700px;
+      margin: 50px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .cart-container h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 15px 0;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .cart-item span {
+      font-size: 18px;
+      color: #333;
+    }
+
+    .remove-btn {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .total {
+      text-align: right;
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #4a90e2;
+    }
+
+    .payment-section {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .payment-section select,
+    .payment-section button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    footer {
+      background-color: #2f3637;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 60px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div><strong>📚 apni pustak</strong></div>
+    <div class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="help.html">Help</a>
+      <a href="cart.html">My Cart</a>
+      <a href="login.html">Login</a>
+    </div>
+  </header>
+
+  <div class="cart-container">
+    <h2>My Cart</h2>
+    <div id="cart-items"></div>
+    <div class="total" id="total-price">Total: ₹0</div>
+
+    <div class="payment-section">
+      <h3>Select Payment Method</h3>
+      <select id="payment-method">
+        <option value="credit-card">Credit Card</option>
+        <option value="upi">UPI</option>
+        <option value="cod">Cash on Delivery</option>
+      </select>
+      <button onclick="checkout()">Buy Now</button>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 apni pustak. All rights reserved.
+  </footer>
+
+  <script>
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartContainer = document.getElementById('cart-items');
+    const totalPriceElement = document.getElementById('total-price');
+    const paymentMethodSelect = document.getElementById('payment-method');
+
+    function renderCart() {
+      cartContainer.innerHTML = '';
+      let total = 0;
+
+      cartItems.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <span>${item.title}</span>
+          <span>₹${item.price}</span>
+          <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+        `;
+        cartContainer.appendChild(div);
+        total += item.price;
+      });
+
+      totalPriceElement.textContent = `Total: ₹${total}`;
+    }
+
+    function removeItem(index) {
+      cartItems.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+      renderCart();
+    }
+
+    function checkout() {
+      const paymentMethod = paymentMethodSelect.value;
+      alert(`Proceeding to checkout with ${paymentMethod} payment method.`);
+      // Here, you can add further logic to handle the checkout process.
+    }
+
+    renderCart();
+  </script>
+
+</body>
+</html>
+>>>>>>> 51be3d7383b255e8d1941d26e6ee048c5a9c9972
